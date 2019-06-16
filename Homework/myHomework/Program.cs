@@ -1,4 +1,9 @@
-﻿using System;
+﻿using myHomework._17HelpModel;
+using myHomework.Call;
+using myHomework.Data;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace myHomework
 {
@@ -6,7 +11,10 @@ namespace myHomework
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            //一起帮建模
+            wkCreateModel<Article>.Call();
+
+            Console.ReadKey();
         }
     }
 }

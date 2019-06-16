@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28922.388
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "myHomework", "myHomework\myHomework.csproj", "{0AC0BDFD-C213-4510-8B4B-A750544710E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "myHomework", "myHomework\myHomework.csproj", "{0AC0BDFD-C213-4510-8B4B-A750544710E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrawImage", "DrawImage\DrawImage.csproj", "{4D37D128-6069-4498-97F8-C9ED970E041D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{0AC0BDFD-C213-4510-8B4B-A750544710E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0AC0BDFD-C213-4510-8B4B-A750544710E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0AC0BDFD-C213-4510-8B4B-A750544710E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D37D128-6069-4498-97F8-C9ED970E041D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D37D128-6069-4498-97F8-C9ED970E041D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D37D128-6069-4498-97F8-C9ED970E041D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D37D128-6069-4498-97F8-C9ED970E041D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
