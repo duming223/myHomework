@@ -1,13 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using myHomework._17HelpModel;
 
 namespace myHomework.Data
 {
-    class CommentRepository<Comment> : IRepository<Comment>
+    public class CommentRepository/*<Comment>*/ : IRepository<Comment>
     {
-        IList<Comment> comments = new List<Comment>();
+        private IList<Comment> comments;
+
+        public CommentRepository()
+        {
+            comments = new List<Comment>();
+        }
+
         public void Add(Comment comment)
         {
             comments.Add(comment);
@@ -25,7 +32,7 @@ namespace myHomework.Data
 
         public void RemoveByUser(User user)
         {
-            
+
         }
     }
 }

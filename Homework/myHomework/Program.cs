@@ -14,6 +14,9 @@ namespace myHomework
             //一起帮建模
             wkCreateModel<Article>.Call();
 
+            //Linq to XML
+            wkXML.CreateXML();
+
             Console.ReadKey();
         }
     }

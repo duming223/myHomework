@@ -9,24 +9,25 @@ namespace DrawImage
     {
         static void Main(string[] args)
         {
-            // DrawImage(5);
-
             //获取桌面路径
             string pathDesktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
             try
             {
-                CAPTCHA cAPTCHA = new CAPTCHA(280, 100);
-                Bitmap bitmap = cAPTCHA.CreateBitmap(5);
-                if (bitmap.Width < 0 || bitmap.Height < 0)
+                CAPTCHA cAPTCHA = new CAPTCHA(300, 100);
+                Bitmap bitmap = cAPTCHA.CreateBitmap(5,out string strCode);
+                if (bitmap.Width > 500 || bitmap.Height > 500)
                 {
-                    throw new ArgumentOutOfRangeException();
+                    throw new ArgumentOutOfRangeException("异常信息", new Exception("包裹异常信息"));
                 }
-                cAPTCHA.AddCurve(10);
+                cAPTCHA.AddCurve(15);
                 cAPTCHA.AddPixel(600);
 
                 string path = Path.Combine(pathDesktop, "hello.jpg");
                 bitmap.Save(path);
+                Console.WriteLine($"当前验证码是:{strCode}");
                 Process.Start(path);
+                Console.ReadKey();
             }
             catch (ArgumentOutOfRangeException e)
             {
@@ -36,13 +37,19 @@ namespace DrawImage
             catch (MyException e)
             {
                 File.AppendAllText(Path.Combine(pathDesktop, @"CreateBitmap-myExp-log.txt"), $"{ DateTime.Now}- 验证码长度输入无效,长度应该大于0! " + e.ToString() + Environment.NewLine + Environment.NewLine);
-                Console.WriteLine("不行,你输入验证码超过范围了");
+                Console.WriteLine("不行,你输入验证码长度不在范围");
+            }
+            catch (ArgumentException e)
+            {
+                File.AppendAllText(Path.Combine(pathDesktop, @"CreateBitmap-log.txt"), $"{DateTime.Now}------参数无效-------" + e.ToString() + Environment.NewLine + Environment.NewLine);
+                Console.WriteLine("参数无效!");
             }
             catch (Exception e)//未知异常
             {
                 File.AppendAllText(Path.Combine(pathDesktop, @"Exception-log.txt"), $"{DateTime.Now}------未知异常-------" + e.ToString() + Environment.NewLine + Environment.NewLine);
                 Console.WriteLine("发生了未处理异常,请稍后重试!");
             }
+
         }
     }
 }

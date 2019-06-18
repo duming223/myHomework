@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace myHomework.Data
 {
-    public class Repository<Article> : IRepository<Article>
+    public class ArticleRepository/*<Article> */: IRepository<Article>
     {
-        List<Article> articles = new List<Article>();
+        IList<Article> articles = new List<Article>();
         public IList<Article> Get()
         {
             return articles;
@@ -21,7 +21,9 @@ namespace myHomework.Data
 
         public void RemoveByUser(User author)
         {
-            
+
         }
+
+
     }
 }

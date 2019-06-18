@@ -9,8 +9,8 @@ namespace DrawImage
 {
     class CAPTCHA
     {
-        public Bitmap bitmap;
-        public Graphics graphics;
+        private Bitmap bitmap;
+        private Graphics graphics;
         private Random random;
         public Color[] colors = { Color.Black, Color.Blue, Color.Yellow, Color.Red, Color.Navy, Color.Coral };
         public string[] fonts = { "微软雅黑", "长城中行书体", "黑体", "隶书", "吕建德行楷" };
@@ -26,14 +26,14 @@ namespace DrawImage
         /// </summary>
         /// <param name="codeNumber"></param>
         /// <returns></returns>
-        public Bitmap CreateBitmap(int codeNumber)
+        internal Bitmap CreateBitmap(int codeNumber, out string strCode)
         {
-            if (codeNumber < 0)
+            if (codeNumber <= 0)
             {
                 throw new MyException();
             }
             float fontSize = 60;
-            string strCode = null;
+            strCode = null;
 
             for (int i = 0; i < codeNumber; i++)
             {
@@ -77,7 +77,7 @@ namespace DrawImage
     {
         public void MyMessage()
         {
-            Console.WriteLine("不行,你输入的验证码太长了!!!");
+            Console.WriteLine("不行,不在范围!!!");
         }
     }
 }

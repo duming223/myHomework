@@ -10,8 +10,8 @@ namespace myHomework.Call
     {
         public static void Call()
         {
-            IRepository<Article> repArticle = new Repository<Article>();
-            IRepository<Comment> repComment = new Repository<Comment>();
+            IRepository<Article> repArticle = new ArticleRepository/*<Article>*/();
+            IRepository<Comment> repComment = new CommentRepository/*<Comment>*/();
             var articles = repArticle.Get();
 
             #region 一起帮建模
@@ -27,21 +27,25 @@ namespace myHomework.Call
                 article.Publish();
             }
 
-            Comment comment = new Comment(articlesByxy[0], "这几天真热啊", xy, repComment);
-            comment.Publish();
+            Comment commentToN = new Comment(articlesByxy[0], "这几天真热啊", xy, repComment);
+            commentToN.Publish();
 
             Problem problem = new Problem("vs安装错误", "如图错误", xy, true);
             problem.Publish();
 
             User commentUser = new User("小明");
-            Comment replyComment = new Comment(articlesByxy[0], "融化了", commentUser, repComment);
-            replyComment.Publish();
+            Comment commentToC = new Comment(articlesByxy[1], "融化了", commentUser, repComment);
+            for (int i = 0; i < 5; i++)
+            {
+                commentToC.Publish();
+            }
+
 
             User fg = new User("飞哥");
             var articlesByfg = new List<Article>
             {
                 new Article("泛型集合", "泛型集合使用场景.....", fg, new DateTime(2019, 3, 12), repArticle),
-                new Article("linq查询", "linq是C#独有的查结果查询集......", fg, new DateTime(2018, 6, 12), repArticle)
+                new Article("linq查询", "linq是C#独有的结果查询集......", fg, new DateTime(2018, 6, 12), repArticle)
             };
             foreach (var article in articlesByfg)
             {
@@ -119,6 +123,7 @@ namespace myHomework.Call
             }
 
             Console.WriteLine();
+            Console.WriteLine("--------每条文章下的评论------");
             var gs = repComment.Get().GroupBy(a => a.RefArticle);
             foreach (var item in gs)
             {
@@ -129,6 +134,15 @@ namespace myHomework.Call
                 }
             }
 
+            Console.WriteLine();
+            var query = from c in repComment.Get()
+                        group c by c.RefArticle into gc
+                        orderby gc.Count()
+                        select gc.Key;
+            foreach (var item in query)
+            {
+                Console.WriteLine($"<{item.ArticleTitle}>");
+            }
         }
     }
 }
