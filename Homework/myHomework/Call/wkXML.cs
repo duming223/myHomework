@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
-using System.Xml.Linq;
 using System.Linq;
+using System.Xml.Linq;
 
 namespace myHomework.Call
 {
@@ -57,11 +57,32 @@ namespace myHomework.Call
                  new XElement("title", "多线程完结"),
                  new XElement("authorId", 6)
                  ));
-            Console.WriteLine(fromDisk);
+            //Console.WriteLine(fromDisk);
 
             Console.WriteLine();
             //5,删除id=12评论
-            
+            var delId = fromDisk.Descendants("comment").Where(s => s.Element("id").Value == 12.ToString());//返回id 元素
+            foreach (var item in delId.ToList())
+            {
+                item.Remove();
+            }
+
+            //6,改变id=2的article
+            var editArt = fromDisk.Descendants("article").Where(a => a.Element("id").Value == 2.ToString());
+            foreach (var item in editArt.ToList())
+            {
+                item.SetAttributeValue("isDraft", false);
+                item.SetElementValue("title", "源栈培训：C#进阶-8：异步和并行");
+                Console.WriteLine("更改后:" + item);
+            }
+
+            XElement xElUser = new XElement("User",
+                new XElement("id", 1),
+                new XElement("name", "Saber"),
+                new XElement("password", "mimaaa")
+                );
+            Console.WriteLine(xElUser);
+            XDocument xDocUser = new XDocument(new XDeclaration("1.0", "utf-8", "yes"), xElUser);
         }
     }
 }

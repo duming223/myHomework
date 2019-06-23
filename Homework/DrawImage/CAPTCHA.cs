@@ -72,6 +72,9 @@ namespace DrawImage
                 bitmap.SetPixel(random.Next(bitmap.Width), random.Next(bitmap.Height), colors[random.Next(colors.Length)]);
             }
         }
+
+
+
     }
     class MyException : Exception
     {

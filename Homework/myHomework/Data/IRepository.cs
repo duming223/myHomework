@@ -1,15 +1,19 @@
 ﻿using myHomework._17HelpModel;
 using System;
 using System.Collections.Generic;
+using System.Reflection.Metadata;
 using System.Text;
 
 namespace myHomework.Data
 {
-    public interface IRepository<T>
+    public interface IRepository<T> where T : class
     {
-        IList<T> Get();
-        void Add(T repository);
-        void Remove(T repository);
-        void RemoveByUser(User user);
+        T Get();
+        void Add(Article article);
+        void Remove(Article article);
+        void RemoveByAuthorName(string authorName);
+        T OrderByPublishDate();
+        T Search(string search);
+        T GetByAuthorName(string authorName);
     }
 }

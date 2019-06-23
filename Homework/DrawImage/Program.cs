@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace DrawImage
 {
@@ -11,11 +12,13 @@ namespace DrawImage
         {
             //获取桌面路径
             string pathDesktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-
             try
             {
                 CAPTCHA cAPTCHA = new CAPTCHA(300, 100);
-                Bitmap bitmap = cAPTCHA.CreateBitmap(5,out string strCode);
+                Bitmap bitmap = cAPTCHA.CreateBitmap(5, out string strCode);
+
+              
+
                 if (bitmap.Width > 500 || bitmap.Height > 500)
                 {
                     throw new ArgumentOutOfRangeException("异常信息", new Exception("包裹异常信息"));
