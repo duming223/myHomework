@@ -1,5 +1,4 @@
-﻿using myHomework.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace myHomework._17HelpModel
@@ -14,9 +13,9 @@ namespace myHomework._17HelpModel
         public string Title { get; set; }
         public List<string> Keyword { get; set; }
         public List<Comment> Comments { get; set; } = new List<Comment>();
-        public Article(string articleTitle, string body, User author, DateTime publishDate/*, IRepository<Article> repository*/)
+        public Article(string Title, string body, User author, DateTime? publishDate)
         {
-            this.Title = articleTitle;
+            this.Title = Title;
             this.User = author;
             this.PublishDate = publishDate;
             this.Body = body;
@@ -24,8 +23,7 @@ namespace myHomework._17HelpModel
         }
         public void Publish()
         {
-           // _repArticle.Add(this);
-            Console.WriteLine($"{User.NickName}\t在{PublishDate.ToString("D")}发布了一篇标题为《{Title}》的文章");
+            Console.WriteLine($"{User.NickName}\t在{PublishDate?.ToString("D")}发布了一篇标题为《{Title}》的文章");
         }
     }
 }

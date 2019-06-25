@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Articles>
-  <article>
+  <Article>
     <id>0</id>
     <title>多线程</title>
     <authorId>0</authorId>
-  </article>
+  </Article>
 </Articles>

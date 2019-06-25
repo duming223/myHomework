@@ -10,7 +10,7 @@ namespace myHomework._17HelpModel
     {
         public int Id { get; set; }
         public string Body { get; set; }
-        public DateTime PublishDate { get; set; }
+        public DateTime? PublishDate { get; set; }
         public User User { get; set; }
     }
 }

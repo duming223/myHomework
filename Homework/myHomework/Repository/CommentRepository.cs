@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using myHomework._17HelpModel;
 
-namespace myHomework.Data
+namespace myHomework.Repository
 {
     public class CommentRepository/*<Comment>*/ /*: IRepository<Comment>*/
     {

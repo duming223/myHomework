@@ -1,4 +1,4 @@
-﻿using myHomework.Data;
+﻿using myHomework.Repository;
 using System;
 using System.Collections.Generic;
 
@@ -23,7 +23,7 @@ namespace myHomework._17HelpModel
         public void Publish()
         {
             RefArticle.Comments.Add(this);
-            Console.WriteLine($"{User.NickName}\t在文章《{RefArticle.Title}》下发表了评论：{Body}.该文章共有{(_repComments ?? new CommentRepository()).Get().Count}条评论");
+            //Console.WriteLine($"{User.NickName}\t在文章《{RefArticle.Title}》下发表了评论：{Body}.该文章共有{(_repComments ?? new CommentRepository()).Get().Count}条评论");
         }
     }
 }
