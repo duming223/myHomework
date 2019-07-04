@@ -11,7 +11,6 @@ namespace myHomework.Repository
     class XMLArticleRepository : XMLRepository<Article>
     {
         private string path = @"../../../XMLData";
-        private static XElement element;
         private XDocument xDocument;
         public override void Add(Article article)
         {
@@ -24,7 +23,7 @@ namespace myHomework.Repository
                );
             if (Directory.Exists(path))
             {
-                element = XElement.Load(path);
+                XElement element = XElement.Load(path);
                 xArt = xel;
             }
             else
@@ -33,13 +32,16 @@ namespace myHomework.Repository
             }
             xDocument = new XDocument(new XDeclaration("1.0", "utf-8", "yes"), xArt);
         }
-        public void Save()
+        public override void Save()
         {
             xDocument.Save(path);
         }
         public User GetUser(string xAuthorId)
         {
-            var xUserName = XElement.Load(path + "/Users.xml").Descendants("User").Where(u => u.Element("id").Value == xAuthorId).Select(n => n.Element("name").Value).Single();
+            var xUserName = XElement.Load(path + "/Users.xml")
+                .Descendants("User").Where(u => u.Element("id")
+                .Value == xAuthorId).Select(n => n.Element("name").Value)
+                .Single();
             User user = new User(xUserName);
             return user;
         }
@@ -57,6 +59,12 @@ namespace myHomework.Repository
                 alist.Add(article);
             }
             return alist;
+        }
+
+        public List<Article> GetByAuthorName(string authorName)
+        {
+            IEnumerable<Article> list = Get().Where(u => u.User.NickName == authorName);
+            return list.ToList();
         }
     }
 }

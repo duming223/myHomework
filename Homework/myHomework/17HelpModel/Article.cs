@@ -8,10 +8,10 @@ namespace myHomework._17HelpModel
     /// </summary>
     public class Article : CommonModel
     {
-        public int Agree { get; set; }
-        public int DisAgree { get; set; }
+        public List<Agree> Agrees { get; set; }
+        public List<Agree> DisAgrees { get; set; }
         public string Title { get; set; }
-        public List<string> Keyword { get; set; }
+        public List<string> Keywords { get; set; }
         public List<Comment> Comments { get; set; } = new List<Comment>();
         public Article(string Title, string body, User author, DateTime? publishDate)
         {
@@ -19,7 +19,6 @@ namespace myHomework._17HelpModel
             this.User = author;
             this.PublishDate = publishDate;
             this.Body = body;
-            //this._repArticle = repository;
         }
         public void Publish()
         {

@@ -8,7 +8,7 @@ namespace myHomework._17HelpModel
     /// </summary>
     public  class CommonModel
     {
-        public int Id { get; set; }
+        public int Id { get; }
         public string Body { get; set; }
         public DateTime? PublishDate { get; set; }
         public User User { get; set; }

@@ -23,9 +23,9 @@ namespace myHomework.Factory
         private void Make()
         {
             User user = new User("帕克");
-            Article article = new Article("异步和并行", "被async标记的方法被称为异步方法...",user,new DateTime(2019,6,20));
+            Article article = new Article("异步和并行", "被async标记的方法被称为异步方法...", user, new DateTime(2019, 6, 20));
             article.Publish();
-            _repository.Get();
+            _repository.Add(article);
             _repository.Save();
         }
     }

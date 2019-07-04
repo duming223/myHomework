@@ -9,12 +9,12 @@ namespace DrawImage
 {
     class CAPTCHA
     {
-        private Bitmap bitmap;
+        internal Bitmap bitmap;
         private Graphics graphics;
         private Random random;
-        public Color[] colors = { Color.Black, Color.Blue, Color.Yellow, Color.Red, Color.Navy, Color.Coral };
-        public string[] fonts = { "微软雅黑", "长城中行书体", "黑体", "隶书", "吕建德行楷" };
-        public FontStyle[] fontStyles = { FontStyle.Italic, FontStyle.Bold, FontStyle.Regular };
+        private Color[] colors = { Color.Black, Color.Blue, Color.Yellow, Color.Red, Color.Navy, Color.Coral };
+        private string[] fonts = { "微软雅黑", "长城中行书体", "黑体", "隶书", "吕建德行楷" };
+        private FontStyle[] fontStyles = { FontStyle.Italic, FontStyle.Bold, FontStyle.Regular };
         public CAPTCHA(int width, int height)
         {
             bitmap = new Bitmap(width, height);
@@ -26,7 +26,7 @@ namespace DrawImage
         /// </summary>
         /// <param name="codeNumber"></param>
         /// <returns></returns>
-        internal Bitmap CreateBitmap(int codeNumber, out string strCode)
+        internal void CreateBitmap(int codeNumber,out string strCode)
         {
             if (codeNumber <= 0)
             {
@@ -44,7 +44,6 @@ namespace DrawImage
             {
                 graphics.DrawString(strCode[i].ToString(), new Font(fonts[random.Next(fonts.Length)], fontSize, fontStyles[random.Next(fontStyles.Length)]), new SolidBrush(colors[random.Next(colors.Length)]), new Point(i * 50, 0));
             }
-            return bitmap;
         }
         /// <summary>
         /// 添加曲线

@@ -10,11 +10,11 @@ namespace myHomework._17HelpModel
     public class Comment : CommonModel
     {
         private IRepository<Comment> _repComments;
-        public Comment(Article article, string commentBody, User commentUser)
+        public Comment(Article article, string Body, User author)
         {
             this.RefArticle = article;
-            this.Body = commentBody;
-            this.User = commentUser;
+            this.Body = Body;
+            this.User = author;
         }
         //评论对应的文章
         public Article RefArticle { get; set; }

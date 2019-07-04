@@ -9,9 +9,10 @@
         {
             NickName = nickName;
         }
-        public int Id { get; set; }
+        public int Id { get; }
         public string NickName { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
+        private string Email { get; set; }
+        private string Password { get; set; }
+        public TokenManager Token { get; set; }
     }
 }

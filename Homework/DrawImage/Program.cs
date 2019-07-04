@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace DrawImage
@@ -15,19 +16,19 @@ namespace DrawImage
             try
             {
                 CAPTCHA cAPTCHA = new CAPTCHA(300, 100);
-                Bitmap bitmap = cAPTCHA.CreateBitmap(5, out string strCode);
+                Bitmap img = cAPTCHA.bitmap;
+                cAPTCHA.CreateBitmap(5, out string strCode);
 
-              
-
-                if (bitmap.Width > 500 || bitmap.Height > 500)
+                if (img.Width > 500 || img.Height > 500)
                 {
-                    throw new ArgumentOutOfRangeException("异常信息", new Exception("包裹异常信息"));
+                    throw new ArgumentOutOfRangeException();
                 }
+                //Task addCurve=new Task(cAPTCHA.AddCurve(15))
                 cAPTCHA.AddCurve(15);
                 cAPTCHA.AddPixel(600);
 
                 string path = Path.Combine(pathDesktop, "hello.jpg");
-                bitmap.Save(path);
+                img.Save(path);
                 Console.WriteLine($"当前验证码是:{strCode}");
                 Process.Start(path);
                 Console.ReadKey();

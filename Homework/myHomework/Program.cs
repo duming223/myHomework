@@ -1,6 +1,10 @@
 ﻿using myHomework._17HelpModel;
+using myHomework.Call;
 using myHomework.Repository;
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace myHomework
 {
@@ -14,12 +18,11 @@ namespace myHomework
             //Linq to XML
             //wkXML.CreateXML();
 
-            User user = new User("钢铁侠");
-            Article article = new Article("多线程", "灭霸来袭....", user, new DateTime(2023, 2, 5));
-            Comment comment = new Comment(article, "灭霸吊炸天...", user);
+            // Factory.ArticleFactory.Init();
 
-            Factory.ArticleFactory.Init();
+            //ClearRepeatEmail.Call();
 
+            //var a = TokenManager.Get();
             Console.ReadKey();
         }
 
