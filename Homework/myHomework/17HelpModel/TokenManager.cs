@@ -6,32 +6,43 @@ namespace myHomework._17HelpModel
 {
     public class TokenManager
     {
-        private IList<string> _tokens;
-        public TokenManager()
+        public static void Call()
         {
-            _tokens = Get();
+            User user = new User("xiao");
+            Map(user);
+            user.Tokens.Add(Token.Admin);
+            user.Tokens.Add(Token.Blogger);
+            user.Tokens.Remove(Token.Blogger);
+            Console.WriteLine(user.Tokens.Has(Token.Newbie));
+            Console.WriteLine(user.Tokens.Get());
         }
 
-        public static IList<string> Get()
+        //反射获取实例
+        private static void Map(User user)
         {
-            IList<string> enums = new List<string>();
-            foreach (var s in Enum.GetNames(typeof(Token)))
-            {
-                enums.Add(s);
-            }
-            return enums;
+            object obj = Activator.CreateInstance(typeof(TokenManager));
+            user.Tokens = (TokenManager)obj;
+        }
+
+        private Token _tokens;
+        public Token Get()
+        {
+            return _tokens;
         }
         public void Add(Token token)
         {
-            _tokens.Add(token.ToString());
+            _tokens = (_tokens | token);
         }
         public void Remove(Token token)
         {
-            _tokens.Remove(token.ToString());
+            //&用于空权限remove情况
+            _tokens = _tokens & (_tokens ^ token);
         }
-        public void Has(Token token)
+        public bool Has(Token token)
         {
-            _tokens.Contains(token.ToString());
+            //true 包含权限.token可以隐式转换为对应数字
+            //return _tokens.HasFlag(token);
+            return (_tokens & token) > 0;
         }
     }
 }

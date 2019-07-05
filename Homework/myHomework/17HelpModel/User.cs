@@ -13,6 +13,6 @@
         public string NickName { get; set; }
         private string Email { get; set; }
         private string Password { get; set; }
-        public TokenManager Token { get; set; }
+        public TokenManager Tokens { get; set; }
     }
 }

@@ -22,7 +22,8 @@ namespace myHomework
 
             //ClearRepeatEmail.Call();
 
-            //var a = TokenManager.Get();
+            TokenManager.Call();
+
             Console.ReadKey();
         }
 
